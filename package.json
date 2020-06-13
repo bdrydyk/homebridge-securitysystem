@@ -1,11 +1,28 @@
 {
+  "private": false,
+  "displayName": "homebridge-securitysystem",
   "name": "homebridge-securitysystem",
-  "version": "3.0.0-beta.4",
+  "version": "4.0.0",
   "description": "Homebridge plugin that creates a security system accessory that can be triggered by HomeKit accessories.",
-  "main": "index.js",
+  "author": "MiguelRipoll23",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MiguelRipoll23/homebridge-securitysystem.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MiguelRipoll23/homebridge-securitysystem/issues"
+  },
+  "engines": {
+    "node": ">=10.17.0",
+    "homebridge": ">0.4.53"
+  },
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"No test found.\" && exit 0"
+    "lint": "eslint src/**.ts",
+    "watch": "npm run build && npm link && nodemon",
+    "build": "rimraf ./dist && tsc",
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "keywords": [
     "homebridge-plugin",
@@ -15,22 +32,19 @@
     "alarm",
     "category-security"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/MiguelRipoll23/homebridge-securitysystem.git"
-  },
-  "author": "MiguelRipoll23",
-  "license": "MIT",
-  "bugs": {
-    "url": "http://github.com/MiguelRipoll23/homebridge-securitysystem/issues"
-  },
-  "engines": {
-    "node": ">=10.x",
-    "homebridge": ">=0.2.0"
-  },
   "dependencies": {
-    "express": "^4.17.1",
     "node-fetch": "^2.6.0",
-    "node-persist": "^3.0.5"
+    "node-persist": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.11",
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
+    "eslint": "^7.2.0",
+    "homebridge": "^1.1.0",
+    "nodemon": "^2.0.4",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
   }
 }
