@@ -14,7 +14,7 @@ export class MotionSensorService {
     this.hap = kit.hap;
 
     // Siren sensor
-    this.sirenSensorService = new this.hap.Service.MotionSensor('Siren sensor', 'siren-sensor');
+    this.sirenSensorService = new this.hap.Service.MotionSensor('Siren Triggered', 'siren-sensor');
     this.addGettersSetters();
   }
 

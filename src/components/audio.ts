@@ -20,7 +20,7 @@ export class Audio {
     this.options = kit.options;
   }
 
-  public play(type: string, state: number | string) {
+  public play(type: string, state: number | string): void {
     const mode = Utils.state2mode(this.hap, state);
 
     // Ignore 'Current Off' event
@@ -31,9 +31,7 @@ export class Audio {
     }
   
     // Close previous player
-    if (this.player !== null) {
-      this.player.kill();
-    }
+    this.stop();
   
     const filename = `${type}-${mode}.mp3`;
     const options = ['-loglevel', 'error', '-nodisp', `${__dirname}/sounds/${this.options.audioLanguage}/${filename}`];
@@ -55,5 +53,11 @@ export class Audio {
     this.player.on('close', () => {
       this.player = null;
     });
+  }
+
+  public stop(): void {
+    if (this.player !== null) {
+      this.player.kill();
+    }
   }
 }
